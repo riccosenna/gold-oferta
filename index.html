@@ -3,108 +3,217 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sistema Gold — Oferta Especial 50% OFF</title>
+<title>Promoção 50% OFF — Sistema Gold + Trader Control</title>
 <style>
   * { margin:0; padding:0; box-sizing:border-box; }
   body {
     background:#080808; color:#fff; font-family:'Helvetica Neue',Arial,sans-serif;
-    min-height:100vh; display:flex; align-items:center; justify-content:center;
-    padding:20px;
+    min-height:100vh; padding:32px 16px 60px;
   }
-  .card {
-    max-width:440px; width:100%;
-    background:#0d0b00; border:1px solid rgba(212,175,55,0.25);
-    border-radius:20px; padding:40px 32px;
+  .wrap { max-width:980px; margin:0 auto; }
+
+  /* HEADER / COUNTDOWN */
+  .header { text-align:center; margin-bottom:28px; }
+  .eyebrow {
+    font-size:0.68rem; letter-spacing:0.2em; text-transform:uppercase;
+    color:rgba(255,255,255,0.4); margin-bottom:10px;
   }
-  .logo { text-align:center; margin-bottom:24px; }
-  .logo-text {
-    font-family:Georgia,serif; font-size:1.3rem; font-weight:800;
-    color:#D4AF37; letter-spacing:0.1em;
+  .header h1 {
+    font-family:Georgia,serif; font-size:1.9rem; line-height:1.25; margin-bottom:14px;
   }
-  .logo-sub {
-    font-size:0.6rem; color:rgba(255,255,255,0.35); text-transform:uppercase;
-    letter-spacing:0.18em; margin-top:4px;
-  }
-  .badge {
-    display:inline-block; background:rgba(239,68,68,0.15); color:#fca5a5;
-    border:1px solid rgba(239,68,68,0.4); padding:6px 14px; border-radius:99px;
-    font-size:0.7rem; font-weight:700; letter-spacing:0.05em; margin-bottom:16px;
-  }
-  .badge-wrap { text-align:center; }
-  h1 {
-    font-family:Georgia,serif; font-size:1.6rem; text-align:center;
-    margin-bottom:8px; line-height:1.3;
-  }
-  .preco-wrap { text-align:center; margin:24px 0; }
-  .preco-antigo {
-    font-size:1rem; color:rgba(255,255,255,0.4); text-decoration:line-through;
-  }
-  .preco-novo {
-    font-size:2.4rem; font-weight:900; color:#D4AF37; font-family:Georgia,serif;
-  }
-  .preco-sub { font-size:0.75rem; color:rgba(255,255,255,0.4); margin-top:4px; }
+  .header h1 span { color:#D4AF37; }
   .countdown {
-    text-align:center; font-size:0.8rem; color:#fbbf24; margin-bottom:24px;
-    font-family:'Courier New',monospace;
+    display:inline-block; font-family:'Courier New',monospace; font-size:0.82rem;
+    color:#fbbf24; border:1px solid rgba(251,191,36,0.3); border-radius:99px;
+    padding:8px 18px; background:rgba(251,191,36,0.06);
   }
-  .field { margin-bottom:16px; }
+
+  /* COMBO BANNER */
+  .combo {
+    margin:28px auto 36px; max-width:720px;
+    background:linear-gradient(90deg, rgba(212,175,55,0.1), rgba(45,212,191,0.1));
+    border:1px solid rgba(255,255,255,0.12); border-radius:16px;
+    padding:18px 24px; text-align:center;
+  }
+  .combo .tag {
+    display:inline-block; font-size:0.65rem; letter-spacing:0.12em; text-transform:uppercase;
+    color:#fff; background:rgba(255,255,255,0.1); padding:4px 12px; border-radius:99px;
+    margin-bottom:8px;
+  }
+  .combo p { font-size:0.92rem; color:rgba(255,255,255,0.85); line-height:1.5; }
+  .combo strong { color:#fff; }
+
+  /* CARDS GRID */
+  .grid {
+    display:grid; grid-template-columns:1fr 1fr; gap:24px;
+  }
+  @media (max-width:760px) { .grid { grid-template-columns:1fr; } }
+
+  .card {
+    background:#0d0d0d; border-radius:20px; padding:32px 28px;
+    display:flex; flex-direction:column;
+  }
+  .card-gold { border:1px solid rgba(212,175,55,0.25); }
+  .card-trader { border:1px solid rgba(45,212,191,0.25); }
+
+  .product-logo { text-align:center; margin-bottom:18px; }
+  .product-name {
+    font-family:Georgia,serif; font-size:1.15rem; font-weight:800; letter-spacing:0.04em;
+  }
+  .card-gold .product-name { color:#D4AF37; }
+  .card-trader .product-name { color:#2DD4BF; }
+  .product-sub {
+    font-size:0.6rem; color:rgba(255,255,255,0.35); text-transform:uppercase;
+    letter-spacing:0.16em; margin-top:4px;
+  }
+
+  .preco-wrap { text-align:center; margin:18px 0 22px; }
+  .preco-antigo { font-size:0.95rem; color:rgba(255,255,255,0.4); text-decoration:line-through; }
+  .preco-novo { font-size:2.1rem; font-weight:900; font-family:Georgia,serif; }
+  .card-gold .preco-novo { color:#D4AF37; }
+  .card-trader .preco-novo { color:#2DD4BF; }
+  .preco-sub { font-size:0.72rem; color:rgba(255,255,255,0.4); margin-top:2px; }
+
+  .steps { list-style:none; margin-bottom:20px; flex-grow:1; }
+  .steps li {
+    display:flex; gap:10px; font-size:0.82rem; color:rgba(255,255,255,0.75);
+    margin-bottom:10px; line-height:1.4;
+  }
+  .steps li .num {
+    flex-shrink:0; width:20px; height:20px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-size:0.68rem; font-weight:700; margin-top:1px;
+  }
+  .card-gold .steps li .num { background:rgba(212,175,55,0.15); color:#D4AF37; }
+  .card-trader .steps li .num { background:rgba(45,212,191,0.15); color:#2DD4BF; }
+
+  .field { margin-bottom:14px; }
   label {
-    font-size:0.65rem; text-transform:uppercase; letter-spacing:0.12em;
+    font-size:0.62rem; text-transform:uppercase; letter-spacing:0.1em;
     color:rgba(255,255,255,0.4); display:block; margin-bottom:6px;
   }
   input {
-    width:100%; padding:14px; background:rgba(255,255,255,0.05);
+    width:100%; padding:13px 14px; background:rgba(255,255,255,0.05);
     border:1px solid rgba(255,255,255,0.12); border-radius:10px;
-    color:#fff; font-size:0.9rem; outline:none; box-sizing:border-box;
+    color:#fff; font-size:0.88rem; outline:none;
   }
-  input:focus { border-color:rgba(212,175,55,0.5); }
+  input:focus { border-color:rgba(255,255,255,0.3); }
+
+  .cupom-box {
+    display:flex; align-items:center; gap:8px; margin-bottom:18px;
+    background:rgba(45,212,191,0.08); border:1px dashed rgba(45,212,191,0.4);
+    border-radius:10px; padding:10px 14px;
+  }
+  .cupom-box code {
+    font-family:'Courier New',monospace; font-size:0.95rem; font-weight:700;
+    color:#2DD4BF; letter-spacing:0.05em; flex-grow:1;
+  }
+  .copy-btn {
+    background:rgba(45,212,191,0.15); border:1px solid rgba(45,212,191,0.4);
+    color:#2DD4BF; font-size:0.68rem; font-weight:700; letter-spacing:0.04em;
+    padding:6px 10px; border-radius:7px; cursor:pointer; transition:all .15s;
+    text-transform:uppercase; white-space:nowrap;
+  }
+  .copy-btn:hover { background:rgba(45,212,191,0.25); }
+
   .btn {
-    width:100%; padding:16px; margin-top:8px;
-    background:linear-gradient(90deg,#c8920a,#D4AF37,#F5D87A,#c8a030);
-    border:none; border-radius:12px; color:#0a0700;
-    font-family:Georgia,serif; font-size:0.9rem; font-weight:800;
-    letter-spacing:0.08em; cursor:pointer; transition:all .2s;
+    width:100%; padding:15px; border:none; border-radius:12px;
+    font-family:Georgia,serif; font-size:0.85rem; font-weight:800;
+    letter-spacing:0.06em; cursor:pointer; transition:all .2s;
   }
-  .btn:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(212,175,55,0.4); }
+  .btn-gold { background:linear-gradient(90deg,#c8920a,#D4AF37,#F5D87A,#c8a030); color:#0a0700; }
+  .btn-trader { background:linear-gradient(90deg,#0d9488,#2DD4BF,#5eead4); color:#021a17; }
+  .btn:hover { transform:translateY(-2px); box-shadow:0 8px 20px rgba(255,255,255,0.08); }
   .btn:disabled { opacity:0.6; cursor:not-allowed; transform:none; }
+
   .erro {
     display:none; background:rgba(239,68,68,0.08); border:1px solid rgba(239,68,68,0.3);
-    border-radius:8px; padding:10px 14px; font-size:0.78rem; color:#fca5a5; margin-top:12px;
+    border-radius:8px; padding:10px 14px; font-size:0.76rem; color:#fca5a5; margin-top:10px;
   }
+
   .footer-note {
-    text-align:center; font-size:0.65rem; color:rgba(255,255,255,0.25); margin-top:20px;
+    text-align:center; font-size:0.65rem; color:rgba(255,255,255,0.25); margin-top:36px;
   }
 </style>
 </head>
 <body>
 
-<div class="card">
-  <div class="logo">
-    <div class="logo-text">▲ SISTEMA GOLD</div>
-    <div class="logo-sub">Alavancagem Inteligente</div>
+<div class="wrap">
+
+  <div class="header">
+    <div class="eyebrow">Oferta relâmpago</div>
+    <h1>50% OFF nos sistemas que organizam<br><span>sua operação e seus resultados</span></h1>
+    <div class="countdown" id="countdown">Calculando...</div>
   </div>
 
-  <div class="badge-wrap"><span class="badge">🔥 OFERTA RELÂMPAGO</span></div>
-
-  <h1>50% de desconto<br>por tempo limitado</h1>
-
-  <div class="preco-wrap">
-    <div class="preco-antigo">R$ 99,90</div>
-    <div class="preco-novo">R$ 49,95</div>
-    <div class="preco-sub">pagamento único</div>
+  <div class="combo">
+    <div class="tag">🔥 Leve os dois</div>
+    <p>Adquira <strong>Sistema Gold + Trader Control</strong> e pague <strong>R$ 99,90 no total</strong> — o preço de apenas 1 sistema. Garanta sua vaga em cada card abaixo.</p>
   </div>
 
-  <div class="countdown" id="countdown">Calculando...</div>
+  <div class="grid">
 
-  <div class="field">
-    <label>Seu melhor e-mail</label>
-    <input type="email" id="email" placeholder="seu@email.com"/>
+    <!-- CARD SISTEMA GOLD -->
+    <div class="card card-gold">
+      <div class="product-logo">
+        <div class="product-name">▲ SISTEMA GOLD</div>
+        <div class="product-sub">Alavancagem Inteligente</div>
+      </div>
+
+      <div class="preco-wrap">
+        <div class="preco-antigo">R$ 99,90</div>
+        <div class="preco-novo">R$ 49,95</div>
+        <div class="preco-sub">pagamento único</div>
+      </div>
+
+      <ul class="steps">
+        <li><span class="num">1</span> Digite seu e-mail abaixo</li>
+        <li><span class="num">2</span> Pague com Pix ou cartão</li>
+        <li><span class="num">3</span> Acesso liberado automaticamente — você recebe a senha por e-mail em poucos minutos</li>
+      </ul>
+
+      <div class="field">
+        <label>Seu melhor e-mail</label>
+        <input type="email" id="emailGold" placeholder="seu@email.com"/>
+      </div>
+
+      <button class="btn btn-gold" id="btnGold" onclick="pagarGold()">GARANTIR DESCONTO — R$ 49,95</button>
+      <div class="erro" id="erroGold"></div>
+    </div>
+
+    <!-- CARD TRADER CONTROL -->
+    <div class="card card-trader">
+      <div class="product-logo">
+        <div class="product-name">◆ TRADER CONTROL</div>
+        <div class="product-sub">Gestão de Operações</div>
+      </div>
+
+      <div class="preco-wrap">
+        <div class="preco-antigo">R$ 99,00</div>
+        <div class="preco-novo">R$ 49,90</div>
+        <div class="preco-sub">pagamento único</div>
+      </div>
+
+      <ul class="steps">
+        <li><span class="num">1</span> Clique no botão abaixo</li>
+        <li><span class="num">2</span> Você será levado à página de cadastro do Trader Control</li>
+        <li><span class="num">3</span> Preencha nome, e-mail e senha</li>
+        <li><span class="num">4</span> No campo "Código promocional", cole o cupom abaixo</li>
+        <li><span class="num">5</span> Finalize o pagamento — acesso liberado na hora</li>
+      </ul>
+
+      <div class="cupom-box">
+        <code id="cupomCode">SENNA50</code>
+        <button class="copy-btn" id="copyBtn" onclick="copiarCupom()">Copiar</button>
+      </div>
+
+      <button class="btn btn-trader" onclick="window.location.href='https://trader-control.netlify.app/login'">QUERO O TRADER CONTROL</button>
+    </div>
+
   </div>
 
-  <button class="btn" id="btnPagar" onclick="pagar()">GARANTIR DESCONTO — R$ 49,95</button>
-  <div class="erro" id="erro"></div>
+  <div class="footer-note">Pagamentos 100% seguros via Mercado Pago<br>Oferta válida até 27/06/2026</div>
 
-  <div class="footer-note">Pagamento 100% seguro via Mercado Pago<br>Oferta válida até 27/06/2026</div>
 </div>
 
 <script>
@@ -114,7 +223,11 @@ function updateCountdown() {
   const fim = new Date('2026-06-27T23:59:59');
   const now = new Date();
   const diff = fim - now;
-  if (diff <= 0) { el.textContent = '⏱ Oferta encerrada'; document.getElementById('btnPagar').disabled = true; return; }
+  if (diff <= 0) {
+    el.textContent = '⏱ Oferta encerrada';
+    document.getElementById('btnGold').disabled = true;
+    return;
+  }
   const d = Math.floor(diff / 86400000);
   const h = Math.floor((diff % 86400000) / 3600000);
   const m = Math.floor((diff % 3600000) / 60000);
@@ -123,10 +236,22 @@ function updateCountdown() {
 updateCountdown();
 setInterval(updateCountdown, 60000);
 
-async function pagar() {
-  const emailEl = document.getElementById('email');
-  const erroEl = document.getElementById('erro');
-  const btn = document.getElementById('btnPagar');
+// Copiar cupom
+function copiarCupom() {
+  const code = document.getElementById('cupomCode').textContent;
+  navigator.clipboard.writeText(code).then(() => {
+    const btn = document.getElementById('copyBtn');
+    const original = btn.textContent;
+    btn.textContent = 'Copiado!';
+    setTimeout(() => { btn.textContent = original; }, 1800);
+  });
+}
+
+// Checkout Sistema Gold (mesmo fluxo já testado)
+async function pagarGold() {
+  const emailEl = document.getElementById('emailGold');
+  const erroEl = document.getElementById('erroGold');
+  const btn = document.getElementById('btnGold');
   const email = emailEl.value.trim();
 
   const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
