@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sistema Gold — Oferta Especial 50% OFF</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    background:#080808; color:#fff; font-family:'Helvetica Neue',Arial,sans-serif;
+    min-height:100vh; display:flex; align-items:center; justify-content:center;
+    padding:20px;
+  }
+  .card {
+    max-width:440px; width:100%;
+    background:#0d0b00; border:1px solid rgba(212,175,55,0.25);
+    border-radius:20px; padding:40px 32px;
+  }
+  .logo { text-align:center; margin-bottom:24px; }
+  .logo-text {
+    font-family:Georgia,serif; font-size:1.3rem; font-weight:800;
+    color:#D4AF37; letter-spacing:0.1em;
+  }
+  .logo-sub {
+    font-size:0.6rem; color:rgba(255,255,255,0.35); text-transform:uppercase;
+    letter-spacing:0.18em; margin-top:4px;
+  }
+  .badge {
+    display:inline-block; background:rgba(239,68,68,0.15); color:#fca5a5;
+    border:1px solid rgba(239,68,68,0.4); padding:6px 14px; border-radius:99px;
+    font-size:0.7rem; font-weight:700; letter-spacing:0.05em; margin-bottom:16px;
+  }
+  .badge-wrap { text-align:center; }
+  h1 {
+    font-family:Georgia,serif; font-size:1.6rem; text-align:center;
+    margin-bottom:8px; line-height:1.3;
+  }
+  .preco-wrap { text-align:center; margin:24px 0; }
+  .preco-antigo {
+    font-size:1rem; color:rgba(255,255,255,0.4); text-decoration:line-through;
+  }
+  .preco-novo {
+    font-size:2.4rem; font-weight:900; color:#D4AF37; font-family:Georgia,serif;
+  }
+  .preco-sub { font-size:0.75rem; color:rgba(255,255,255,0.4); margin-top:4px; }
+  .countdown {
+    text-align:center; font-size:0.8rem; color:#fbbf24; margin-bottom:24px;
+    font-family:'Courier New',monospace;
+  }
+  .field { margin-bottom:16px; }
+  label {
+    font-size:0.65rem; text-transform:uppercase; letter-spacing:0.12em;
+    color:rgba(255,255,255,0.4); display:block; margin-bottom:6px;
+  }
+  input {
+    width:100%; padding:14px; background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.12); border-radius:10px;
+    color:#fff; font-size:0.9rem; outline:none; box-sizing:border-box;
+  }
+  input:focus { border-color:rgba(212,175,55,0.5); }
+  .btn {
+    width:100%; padding:16px; margin-top:8px;
+    background:linear-gradient(90deg,#c8920a,#D4AF37,#F5D87A,#c8a030);
+    border:none; border-radius:12px; color:#0a0700;
+    font-family:Georgia,serif; font-size:0.9rem; font-weight:800;
+    letter-spacing:0.08em; cursor:pointer; transition:all .2s;
+  }
+  .btn:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(212,175,55,0.4); }
+  .btn:disabled { opacity:0.6; cursor:not-allowed; transform:none; }
+  .erro {
+    display:none; background:rgba(239,68,68,0.08); border:1px solid rgba(239,68,68,0.3);
+    border-radius:8px; padding:10px 14px; font-size:0.78rem; color:#fca5a5; margin-top:12px;
+  }
+  .footer-note {
+    text-align:center; font-size:0.65rem; color:rgba(255,255,255,0.25); margin-top:20px;
+  }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <div class="logo">
+    <div class="logo-text">▲ SISTEMA GOLD</div>
+    <div class="logo-sub">Alavancagem Inteligente</div>
+  </div>
+
+  <div class="badge-wrap"><span class="badge">🔥 OFERTA RELÂMPAGO</span></div>
+
+  <h1>50% de desconto<br>por tempo limitado</h1>
+
+  <div class="preco-wrap">
+    <div class="preco-antigo">R$ 99,90</div>
+    <div class="preco-novo">R$ 49,95</div>
+    <div class="preco-sub">pagamento único</div>
+  </div>
+
+  <div class="countdown" id="countdown">Calculando...</div>
+
+  <div class="field">
+    <label>Seu melhor e-mail</label>
+    <input type="email" id="email" placeholder="seu@email.com"/>
+  </div>
+
+  <button class="btn" id="btnPagar" onclick="pagar()">GARANTIR DESCONTO — R$ 49,95</button>
+  <div class="erro" id="erro"></div>
+
+  <div class="footer-note">Pagamento 100% seguro via Mercado Pago<br>Oferta válida até 27/06/2026</div>
+</div>
+
+<script>
+// Countdown
+function updateCountdown() {
+  const el = document.getElementById('countdown');
+  const fim = new Date('2026-06-27T23:59:59');
+  const now = new Date();
+  const diff = fim - now;
+  if (diff <= 0) { el.textContent = '⏱ Oferta encerrada'; document.getElementById('btnPagar').disabled = true; return; }
+  const d = Math.floor(diff / 86400000);
+  const h = Math.floor((diff % 86400000) / 3600000);
+  const m = Math.floor((diff % 3600000) / 60000);
+  el.textContent = '⏱ Expira em ' + d + 'd ' + h + 'h ' + m + 'm';
+}
+updateCountdown();
+setInterval(updateCountdown, 60000);
+
+async function pagar() {
+  const emailEl = document.getElementById('email');
+  const erroEl = document.getElementById('erro');
+  const btn = document.getElementById('btnPagar');
+  const email = emailEl.value.trim();
+
+  const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  if (!emailOk) {
+    erroEl.textContent = 'Digite um e-mail válido.';
+    erroEl.style.display = 'block';
+    emailEl.focus();
+    return;
+  }
+  erroEl.style.display = 'none';
+  btn.textContent = 'Abrindo checkout...';
+  btn.disabled = true;
+
+  try {
+    const resp = await fetch('https://api.mercadopago.com/checkout/preferences', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer APP_USR-219243981410049-050322-b5b8139664d836d8788a23bce5bbc14c-1546940413'
+      },
+      body: JSON.stringify({
+        items: [{
+          title: 'Sistema Gold — Alavancagem Inteligente (Promoção 50% OFF)',
+          quantity: 1,
+          currency_id: 'BRL',
+          unit_price: 49.95
+        }],
+        payer: { email: email },
+        external_reference: email,
+        back_urls: {
+          success: 'https://alavancagemgold.netlify.app/?status=success',
+          failure: 'https://alavancagemgold.netlify.app/?status=failure',
+          pending: 'https://alavancagemgold.netlify.app/?status=pending'
+        },
+        auto_return: 'approved',
+        notification_url: 'https://plxcnyabeiyizzuyytlt.supabase.co/functions/v1/mp-webhook',
+        statement_descriptor: 'SISTEMA GOLD',
+        expires: false
+      })
+    });
+
+    const data = await resp.json();
+    if (data.init_point) {
+      window.location.href = data.init_point;
+    } else {
+      throw new Error('Erro ao criar preferência');
+    }
+  } catch(e) {
+    console.error(e);
+    erroEl.textContent = 'Erro ao conectar. Tente novamente.';
+    erroEl.style.display = 'block';
+    btn.textContent = 'GARANTIR DESCONTO — R$ 49,95';
+    btn.disabled = false;
+  }
+}
+</script>
+
+</body>
+</html>
